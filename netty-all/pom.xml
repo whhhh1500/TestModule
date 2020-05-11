@@ -4,9 +4,10 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <artifactId>TestModule</artifactId>
-        <groupId>org.example</groupId>
+        <groupId>com.cc1500</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
+    <artifactId>netty-all</artifactId>
     <modelVersion>4.0.0</modelVersion>
 
 
@@ -15,7 +16,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
     </properties>
-    <artifactId>netty-all</artifactId>
+
     <build>
         <plugins>
             <plugin>
@@ -48,7 +49,11 @@
             <artifactId>protobuf-java</artifactId>
             <version>3.11.1</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/org.springframework/spring-context -->
+        <dependency>
+            <groupId>com.cc1500</groupId>
+            <artifactId>springl</artifactId>
+           <version>1.0-SNAPSHOT</version>
+        </dependency>
 
 
     </dependencies>

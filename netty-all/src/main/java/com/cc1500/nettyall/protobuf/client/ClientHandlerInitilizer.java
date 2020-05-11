@@ -17,7 +17,7 @@ public class ClientHandlerInitilizer extends ChannelInitializer<Channel> {
 
     @Override
     protected void initChannel(Channel ch) throws Exception {
-        ch.pipeline()
+               ch.pipeline()
                 .addLast(new IdleStateHandler(0, 10, 0))
                 .addLast(new ProtobufVarint32FrameDecoder())
                 .addLast(new ProtobufDecoder(MessageBase.Message.getDefaultInstance()))

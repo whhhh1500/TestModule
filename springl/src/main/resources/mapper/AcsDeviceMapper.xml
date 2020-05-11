@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cc1500.system.mapper.AcsDeviceMapper">
+
+    <resultMap type="com.cc1500.system.entity.AcsDevice" id="AcsDeviceMap">
+        <result property="devId" column="dev_id" jdbcType="INTEGER"/>
+        <result property="devUsername" column="dev_username" jdbcType="VARCHAR"/>
+        <result property="devPassword" column="dev_password" jdbcType="VARCHAR"/>
+        <result property="devPort" column="dev_port" jdbcType="INTEGER"/>
+        <result property="devIp" column="dev_ip" jdbcType="VARCHAR"/>
+        <result property="devName" column="dev_name" jdbcType="VARCHAR"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+        <result property="devState" column="dev_state" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="AcsDeviceMap">
+        select
+          dev_id, dev_username, dev_password, dev_port, dev_ip, dev_name, create_time, update_time, dev_state
+        from easy.acs_device
+        where dev_id = #{devId}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="AcsDeviceMap">
+        select
+          dev_id, dev_username, dev_password, dev_port, dev_ip, dev_name, create_time, update_time, dev_state
+        from easy.acs_device
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="AcsDeviceMap">
+        select
+          dev_id, dev_username, dev_password, dev_port, dev_ip, dev_name, create_time, update_time, dev_state
+        from easy.acs_device
+        <where>
+            <if test="devId != null">
+                and dev_id = #{devId}
+            </if>
+            <if test="devUsername != null and devUsername != ''">
+                and dev_username = #{devUsername}
+            </if>
+            <if test="devPassword != null and devPassword != ''">
+                and dev_password = #{devPassword}
+            </if>
+            <if test="devPort != null">
+                and dev_port = #{devPort}
+            </if>
+            <if test="devIp != null and devIp != ''">
+                and dev_ip = #{devIp}
+            </if>
+            <if test="devName != null and devName != ''">
+                and dev_name = #{devName}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime}
+            </if>
+            <if test="updateTime != null">
+                and update_time = #{updateTime}
+            </if>
+            <if test="devState != null and devState != ''">
+                and dev_state = #{devState}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="devId" useGeneratedKeys="true">
+        insert into easy.acs_device(dev_username, dev_password, dev_port, dev_ip, dev_name, create_time, update_time, dev_state)
+        values (#{devUsername}, #{devPassword}, #{devPort}, #{devIp}, #{devName}, #{createTime}, #{updateTime}, #{devState})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update easy.acs_device
+        <set>
+            <if test="devUsername != null and devUsername != ''">
+                dev_username = #{devUsername},
+            </if>
+            <if test="devPassword != null and devPassword != ''">
+                dev_password = #{devPassword},
+            </if>
+            <if test="devPort != null">
+                dev_port = #{devPort},
+            </if>
+            <if test="devIp != null and devIp != ''">
+                dev_ip = #{devIp},
+            </if>
+            <if test="devName != null and devName != ''">
+                dev_name = #{devName},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime},
+            </if>
+            <if test="devState != null and devState != ''">
+                dev_state = #{devState},
+            </if>
+        </set>
+        where dev_id = #{devId}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from easy.acs_device where dev_id = #{devId}
+    </delete>
+
+</mapper>

@@ -13,6 +13,8 @@ import lombok.extern.slf4j.Slf4j;
 public class HttpServer {
     public static void main(String[] args)  throws  Exception{
         new HttpServer().run();
+        //"https://api.thinkpage.cn/v2/weather/now.json?city=CHHE020000&language=zh-chs&unit=c&key=UVCU41N1DA\";
+        //  mapping result;
     }
 
     public  void run() throws  Exception {

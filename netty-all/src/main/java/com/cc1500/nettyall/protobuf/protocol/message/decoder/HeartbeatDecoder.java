@@ -21,7 +21,7 @@ public class HeartbeatDecoder extends ByteToMessageDecoder {
     protected void decode(ChannelHandlerContext ctx, ByteBuf in, List<Object> out) throws Exception {
         byte version = in.readByte();
         byte command = in.readByte();
-        log.info("version : {}, command : {}", version, command);
+        log.info("decode :version : {}, command : {}", version, command);
         HeartbeatRequestPacket requestPacket = new HeartbeatRequestPacket();
         requestPacket.setVersion(version);
         out.add(requestPacket);

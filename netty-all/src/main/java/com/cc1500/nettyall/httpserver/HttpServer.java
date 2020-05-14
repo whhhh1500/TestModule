@@ -38,7 +38,9 @@ public class HttpServer {
                     });
             ChannelFuture cf=b.bind(8899).sync();
             cf.channel().closeFuture().sync();
-
+            if (cf.isSuccess()) {
+                log.info("HttpServer isSuccess");
+            }
         }finally {
             bossGroup.shutdownGracefully();
             worker.shutdownGracefully();

@@ -5,7 +5,9 @@ import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 public class EchoServer {
     public static void main(String[] args) throws  Exception {
 
@@ -32,6 +34,9 @@ public class EchoServer {
                     });
             ChannelFuture f=  bootstrap.bind(8899).sync();
             f.channel().closeFuture().sync();
+            if (f.isSuccess()) {
+                log.info("EchoServer isSuccess");
+            }
         }finally {
             boss.shutdownGracefully();
             worker.shutdownGracefully();

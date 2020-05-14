@@ -33,7 +33,7 @@ public class NettyServer {
      */
     @PostConstruct
     public void start() throws InterruptedException {
-        log.info("=========================== Server start");
+        log.error("=========================== Server start");
         ServerBootstrap bootstrap = new ServerBootstrap();
         bootstrap.group(boss, work)
                 // 指定Channel
@@ -53,7 +53,7 @@ public class NettyServer {
                 .childHandler(new NettyServerHandlerInitializer());
         ChannelFuture future = bootstrap.bind().sync();
         if (future.isSuccess()) {
-            log.info("启动 Netty Server");
+            log.error("启动 protobuf  NettyServer Server");
         }
     }
 

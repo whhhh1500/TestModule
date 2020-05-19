@@ -1,0 +1,161 @@
+# 项目相关配置
+xingcloud:
+  # 名称
+  name: testModule
+  # 版本
+  version: 1.0-SNAPSHOT
+  # 版权年份
+  copyrightYear: 2020
+  # 实例演示开关
+  demoEnabled: true
+  # 文件路径 示例（ Windows配置D:/xingcloud/uploadPath，Linux配置 /home/xingcloud/uploadPath）
+  profile: /home/testmodule/
+  # 获取ip地址开关
+  addressEnabled: true
+# 开发环境配置
+server:
+  # 服务器的HTTP端口，默认为8080
+  port: 8080
+  servlet:
+    # 应用的访问路径
+    context-path: /
+  tomcat:
+    basedir: /tmp
+    # tomcat的URI编码
+    uri-encoding: UTF-8
+    # tomcat最大线程数，默认为200
+    max-threads: 800
+    # Tomcat启动初始化的线程数，默认值25
+    min-spare-threads: 30
+
+
+## 日志配置
+#logging:
+#  level:
+#    com.xingcloud: debug
+#    org.springframework: warn
+
+# Spring配置
+spring:
+  application:
+    name: testmodule
+  aop:
+    auto: true
+  # 资源信息
+  messages:
+    # 国际化资源文件路径
+    basename: i18n/messages
+  profiles:
+    active: druid
+  # 文件上传
+  servlet:
+    multipart:
+      # 单个文件大小
+      max-file-size:  10MB
+      # 设置总上传的文件大小
+      max-request-size:  20MB
+  thymeleaf:
+    mode: HTML
+    encoding: utf-8
+    # 禁用缓存
+    cache: false
+  #    prefix: classpath:/templates
+  # 服务模块
+  devtools:
+    restart:
+      # 热部署开关
+      enabled: true
+  # redis 配置
+  redis:
+    # 地址
+    host: ibms
+    #    host: localhost
+    port: 6379
+    password: 123456
+    # 连接超时时间
+    timeout: 10s
+    lettuce:
+      pool:
+        # 连接池中的最小空闲连接
+        min-idle: 0
+        # 连接池中的最大空闲连接
+        max-idle: 8
+        # 连接池的最大数据库连接数
+        max-active: 8
+        # #连接池最大阻塞等待时间（使用负值表示没有限制）
+        max-wait: -1ms
+
+
+# MyBatis配置
+mybatis:
+  # 搜索指定包别名
+  typeAliasesPackage: com.cc1500
+  # 配置mapper的扫描，找到所有的mapper.xml映射文件
+  mapperLocations: classpath*:mapper/*Mapper.xml
+  # 加载全局的配置文件
+  configLocation: classpath:mybatis/mybatis-config.xml
+
+# PageHelper分页插件
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
+#
+## Swagger配置
+swagger:
+  enable: true
+
+#Actuator监控
+management:
+  endpoints:
+    # 暴露 EndPoint 以供访问，有jmx和web两种方式，exclude 的优先级高于 include
+    web:
+      exposure:
+        # exclude: '*'
+        include: ["health","info","beans","mappings","logfile","metrics","shutdown","env"]
+      base-path: /actuator  # 配置 Endpoint 的基础路径
+    enabled-by-default: true # 修改全局 endpoint 默认设置
+  endpoint:
+    auditevents: # 1、显示当前引用程序的审计事件信息，默认开启
+      enabled: true
+      cache:
+        time-to-live: 10s # 配置端点缓存响应的时间
+    beans: # 2、显示一个应用中所有 Spring Beans 的完整列表，默认开启
+      enabled: true
+    conditions: # 3、显示配置类和自动配置类的状态及它们被应用和未被应用的原因，默认开启
+      enabled: true
+    configprops: # 4、显示一个所有@ConfigurationProperties的集合列表，默认开启
+      enabled: true
+    env: # 5、显示来自Spring的 ConfigurableEnvironment的属性，默认开启
+      enabled: true
+    flyway: # 6、显示数据库迁移路径，如果有的话，默认开启
+      enabled: true
+    health: # 7、显示健康信息，默认开启
+      enabled: true
+      show-details: always
+    info: # 8、显示任意的应用信息，默认开启
+      enabled: true
+    liquibase: # 9、展示任何Liquibase数据库迁移路径，如果有的话，默认开启
+      enabled: true
+    metrics: # 10、展示当前应用的metrics信息，默认开启
+      enabled: true
+    mappings: # 11、显示一个所有@RequestMapping路径的集合列表，默认开启
+      enabled: true
+    scheduledtasks: # 12、显示应用程序中的计划任务，默认开启
+      enabled: true
+    sessions: # 13、允许从Spring会话支持的会话存储中检索和删除(retrieval and deletion)用户会话。使用Spring Session对反应性Web应用程序的支持时不可用。默认开启。
+      enabled: true
+    shutdown: # 14、允许应用以优雅的方式关闭，默认关闭
+      enabled: true
+    threaddump: # 15、执行一个线程dump
+      enabled: true
+    # web 应用时可以使用以下端点
+    heapdump: # 16、    返回一个GZip压缩的hprof堆dump文件，默认开启
+      enabled: true
+    jolokia: # 17、通过HTTP暴露JMX beans（当Jolokia在类路径上时，WebFlux不可用），默认开启
+      enabled: true
+    logfile: # 18、返回日志文件内容（如果设置了logging.file或logging.path属性的话），支持使用HTTP Range头接收日志文件内容的部分信息，默认开启
+      enabled: true
+    prometheus: #19、以可以被Prometheus服务器抓取的格式显示metrics信息，默认开启
+      enabled: true

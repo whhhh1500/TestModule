@@ -16,7 +16,7 @@ import java.util.List;
  * @since 2020-05-10 21:36:55
  */
 @RestController
-@RequestMapping("/springl/AcsDevice")
+@RequestMapping("/AcsDevice")
 public class AcsDeviceController {
     /** * 服务对象  */
     @Resource

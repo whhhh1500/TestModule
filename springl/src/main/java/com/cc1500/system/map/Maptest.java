@@ -1,5 +1,7 @@
 package com.cc1500.system.map;
 
+import com.sun.org.apache.bcel.internal.generic.NEW;
+
 import java.util.HashMap;
 
 public class Maptest {
@@ -9,18 +11,13 @@ public class Maptest {
         for (int i = 0; i <= 20; i++) {
             map.put(i, i + 1);
         }
+        AVLTree avlTree = new AVLTree<>("101");
+       avlTree.insert("100");
+        System.out.println(avlTree.toString());
 
-        System.out.println(sum(1));
     }
 
-    public static int sum(int... numbers) {
 
-        int sum = 0;
-        for (int number : numbers) {
-            sum += number;
-        }
-        return sum;
-    }
 
     static final int tableSizeFor(int cap) {
         int n = cap - 1;

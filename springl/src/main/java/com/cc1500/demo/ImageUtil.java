@@ -1,4 +1,4 @@
-package com.cc1500.system.demo;
+package com.cc1500.demo;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;

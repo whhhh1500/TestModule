@@ -3,6 +3,7 @@ package com.cc1500.nettyall.echo;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
+import io.netty.channel.rxtx.RxtxChannel;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import lombok.extern.slf4j.Slf4j;
@@ -17,7 +18,7 @@ public class EchoServer {
 
     }
 
-    public    void start() throws  Exception{
+    public  void start() throws  Exception{
         EventLoopGroup boss=new NioEventLoopGroup();
         EventLoopGroup worker=new NioEventLoopGroup();
         ServerBootstrap bootstrap =new ServerBootstrap();
